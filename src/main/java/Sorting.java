@@ -44,7 +44,37 @@ public class Sorting {
      */
     @SuppressWarnings("unused")
     private static int[] selectionSort(final int[] array) {
-        return null;
+        int currentMinIndex;
+        int counter = 0;
+
+        for (int i = 0; i < array.length - 1; i++)
+        {
+            currentMinIndex = i;
+
+            for (int j = i + 1; j < array.length; j++)
+            {
+                if (array[j] < array[currentMinIndex])
+                {
+                    currentMinIndex = j;
+                }
+            }
+
+            // swap numbers if needed
+            if (i != currentMinIndex)
+            {
+                int temp = array[currentMinIndex];
+                array[currentMinIndex] = array[i];
+                array[i] = temp;
+                counter++;
+            }
+        }
+
+        // Print out the number of swaps that took place here
+        // before returning arr
+
+        System.out.println(counter);
+
+        return array;
     }
 
     /**
@@ -55,7 +85,29 @@ public class Sorting {
      */
     @SuppressWarnings("unused")
     private static int[] mergeSort(final int[] array) {
-        return null;
+        int[] printedfirst;
+        int[] printedsecond;
+
+        if (array.length <= 1)
+        {
+            return;
+        }
+
+        // Split the array in half
+        int[] firstHalf = new int[array.length / 2];
+        int[] secondHalf = new int[array.length - firstHalf.length];
+
+
+
+        System.arraycopy(array, 0, firstHalf, 0, firstHalf.length);
+        System.arraycopy(array, firstHalf.length, secondHalf, 0, secondHalf.length);
+
+        // Sort each half
+        mergeSort(firstHalf);
+        mergeSort(secondHalf);
+
+        // Merge the halves together
+        merge(firstHalf, secondHalf);
     }
 
     /**
